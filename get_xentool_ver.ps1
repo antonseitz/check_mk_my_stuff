@@ -16,7 +16,7 @@ foreach ($line in $installedtools){
 
 
 
-$drivers= Get-WmiObject Win32_PnPSignedDriver| ? {$_.Manufacturer -like "*citrix*" } | select DeviceName, Manufacturer, DriverVersion
+$drivers= Get-WmiObject Win32_PnPSignedDriver| ? {$_.Manufacturer -like "*citrix*" } | select DeviceName, Manufacturer, DriverVersion,DriverDate
 foreach ($line in $drivers){
 	
 if($line.DeviceName -like "*Bus*") {
@@ -25,7 +25,8 @@ if($line.DeviceName -like "*Bus*") {
 }
  
     $outputlong += $line.DeviceName + " : "
-    $outputlong += $line.DriverVersion + " \n"
+	$outputlong += $line.DriverVersion
+    $outputlong += " DriverDate:"  + $line.DriverDate.split(".")[0].Substring(0,8) + " \n"
    
    
 }
