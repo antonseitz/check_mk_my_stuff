@@ -25,7 +25,7 @@ if($line.DeviceName -like "*Bus*") {
 }
  
     $outputlong += $line.DeviceName + " : "
-	$outputlong += $line.DriverVersion
+	$outputlong += $line.DriverVersion #PadLeft(15,[char]4)
     $outputlong += " DriverDate:"  + $line.DriverDate.split(".")[0].Substring(0,8) + " \n"
    
    
