@@ -26,8 +26,8 @@ select TimeGenerated, Eventid,
 @{Name="QuellIP"; Expression={$_.Replacementstrings[19]}}
 
 
-$failed_logins_h=$log_h.count
-$failed_logins_min=$log_min.count
+$failed_logins_h=$log_h.count / 60
+$failed_logins_min=$log_min.count / 15
 
 
 
@@ -58,3 +58,4 @@ $long+=  [string]$id.count + " failed logins from IP: " + $id.Name + "\n"
 
 
 "P Failed_logins failed_h=" + $failed_logins_h + ";" + $failed_logins_h_warn + ";" + $failed_logins_h_crit  + "|failed_min=" + $failed_logins_min + " " + $statetext + " - Failed Logins (last 15 min): " + $failed_logins_min + " After: " + $after + " (Details in long output)\n" + $long
+"P Failed_loginss failed_h=" + $failed_logins_h + ";" + $failed_logins_h_warn + ";" + $failed_logins_h_crit  + "|failed_min=" + $failed_logins_min + " " + $statetext + " - Failed Logins (last 15 min): " + $failed_logins_min + " After: " + $after + " (Details in long output)\n" + $long
