@@ -34,5 +34,5 @@ if($line.DeviceName -like "*Bus*") {
 
 
 
-"0 XenTools - OK - Agent: " + $agentver + " Xen Tools: " + $toolver 
+"0 XenTools - OK - Agent: " + $agentver + " Xen Tools: " + $toolver + " listed in APPS"
 "0 XenToolsDriver - OK - Version: " + $outputshort + " (Details in long output)\n" + $outputlong 
