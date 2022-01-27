@@ -1,7 +1,4 @@
 
-
-
-
 $installedtools=Get-WmiObject -class win32_product | ? {$_.Name -like "*citrix*"} | select Name,Version
 $agentver="none"
 $toolver="none"
@@ -34,5 +31,5 @@ if($line.DeviceName -like "*Bus*") {
 
 
 
-"0 XenTools - OK - Agent: " + $agentver + " Xen Tools: " + $toolver + " listed in APPS"
+"0 XenTools - OK - Agent: " + $agentver + " Xen Tools: " + $toolver + " (listed under APPS)"
 "0 XenToolsDriver - OK - Version: " + $outputshort + " (Details in long output)\n" + $outputlong 
