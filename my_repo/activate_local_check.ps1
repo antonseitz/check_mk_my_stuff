@@ -1,1 +1,0 @@
-C:/programdata/checkmk/agent/local/my_repo/win/activate_local_check.ps1
