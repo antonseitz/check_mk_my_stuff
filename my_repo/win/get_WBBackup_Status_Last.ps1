@@ -13,5 +13,4 @@ if($a){
 	$status+=" Start: " + $a.StartTime + " End: " + $a.EndTime 
 }
 
-
 $status_nr + " WBBackup_Last - " + $status_word + " - Last Windows Backup Job Status: " + $status
