@@ -1,4 +1,3 @@
-
 $installedtools=Get-WmiObject -class win32_product | ? {$_.Name -like "*citrix*"} | select Name,Version
 $agentver="NONE"
 $toolver="NONE"
