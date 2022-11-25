@@ -1,1 +1,0 @@
-C:/programdata/checkmk/agent/local/win/get_WBBackup_Status_Last.ps1

@@ -1,0 +1,1 @@
+C:/programdata/checkmk/agent/local/my_repo/win/get_WBBackup_Status_Current.ps1
