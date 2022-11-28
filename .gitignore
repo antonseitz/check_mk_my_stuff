@@ -24,3 +24,10 @@ state/eventstate_10_168_178_205.txt
 state/eventstate___ffff_10_168_178_10.txt
 state/logstate.txt
 state/mk_inventory.10.168.178.205
+state/eventstate_127_0_0_1.txt
+state/eventstate_192_168_0_201.txt
+state/eventstate___ffff_192_168_0_201.txt
+state/mk_inventory.192.168.0.201
+state/mk_inventory.local
+windows_updates.vbs
+local/
