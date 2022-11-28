@@ -1,1 +1,1 @@
-New-Item -target $args[0] -ItemType SymbolicLink -path ..\..\$args
+New-Item -target $args[0] -ItemType SymbolicLink -path ..\..\local\$args
