@@ -1,20 +1,24 @@
-$a=Select-String -Path C:\ms_backup\logs\ms_backup.diff.log -Pattern "error" #-Context 10 
+$last_n_lines=300
 
-$status="None done jobs yet"
+$a=get-content -Path C:\ms_backup\logs\ms_backup.full.log -tail $last_n_lines | Select-String  -Pattern "error" 
+$b=get-content -Path C:\ms_backup\logs\ms_backup.diff.log -tail $last_n_lines | Select-String  -Pattern "error" 
+
+$status="MSBACKUP Logfile Status: " 
 $status_nr="0"
 $status_word="OK"
 
-if($a.count -gt 0 ){
+if(($a.count -gt 0 ) -or ($b.count -gt 0)){
 	$Status_nr="2"
 	$status_word="CRITICAL"
-	$status="Last Logfile Status: " 
 	
-	#if(( $a.Jobstate -ne "Completed" ) -or ($a.HResult -ne 0)) {
-	
-	#$status_word="Jobstate:" + $a.Jobstate
-	#$status_word+=" HResult: " + $a.HResult + " Errordescription: " +$a.Errordescription
-	$status +="Logfile:" + $a[-1]
-	
+	if($a.count -gt 0){
+	$status+=" " + $a.count + " Error(s) found in last " + $last_n_lines+" lines of FULL Log ! Last Error: "
+	$status +="Logfileline:" + $a[-1]
+	}
+	if($b.count -gt 0){
+	$status+=" - " + $b.count + " Error(s) found in last " + $last_n_lines+" lines of DIFF Log ! Last Error: "
+	$status +="Logfileline:" + $b[-1]
+	}
 	
 	
 	
@@ -24,4 +28,4 @@ if($a.count -gt 0 ){
 # Umbrüche entfernen
 $status=$status.replace("`r|`t|`n","")
 
-$status_nr + " WBBackup_TxtLog - " + $status_word + " - Last Windows Backup Job TXT Log: " + $status
+$status_nr + " WBBackup_TxtLog - " + $status_word + " - " + $status
