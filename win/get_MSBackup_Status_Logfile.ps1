@@ -1,7 +1,7 @@
 $last_n_lines=300
 
-$a=get-content -Path C:\ms_backup\logs\ms_backup.full.log -tail $last_n_lines | Select-String  -Pattern "error" 
-$b=get-content -Path C:\ms_backup\logs\ms_backup.diff.log -tail $last_n_lines | Select-String  -Pattern "error" 
+$a=get-content -Path C:\ms_backup\logs\ms_backup.full.log -tail $last_n_lines | Select-String  -Pattern "error|exception" 
+$b=get-content -Path C:\ms_backup\logs\ms_backup.diff.log -tail $last_n_lines | Select-String  -Pattern "error|exception" 
 
 $status="MSBACKUP Logfile Status: " 
 $status_nr="0"
