@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+OUT=$(dstat -c 5 1)
+OUT=${OUT##*$'\n'}
+OUT=$(echo $OUT | awk '{print $4}' )
+echo "0 CPU_IO_WAIT IOWAIT=$OUT%;20;30 CPU IO Wait= $OUT %" 
+exit 0

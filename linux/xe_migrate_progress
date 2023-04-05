@@ -1,0 +1,63 @@
+#!/bin/python
+# -*- coding: utf-8 -*-
+import datetime, subprocess,sys,time
+
+dauertnoch_s=0
+dauertnoch=" none running"
+#from dateutil import tz
+# Das Startdatum von XE ist UTC, also rechnen wir auch mit UTC
+now= datetime.datetime.utcnow()
+now_local= datetime.datetime.now()
+diff= now_local - now
+#print "NOW: " + str(now)
+created=False
+progress=False
+task="None"
+output=" none running"
+
+xe_tasklist = subprocess.check_output(["xe", "task-list",  "status=pending","params=progress,created,name-label" ])
+
+
+status="OK"
+status_num=0
+
+for line in xe_tasklist.splitlines():
+	if "created" in line:
+		created=line.split(":",1)[1]
+
+		
+
+	if "progress" in line:
+		progress=float(line.split(":")[1])
+		
+	if "name-label" in line:
+		task=line.split(":")[1]
+
+if ( created and  progress) :
+	
+
+	status="WARNING"
+	status_num=1
+	# 20200315T13:53:33Z
+	created_py = datetime.datetime.strptime(created, " %Y%m%dT%H:%M:%SZ")
+	#print "Created: "  + created
+	#print "Created pY: "  + str(created_py)
+	#print "Elapsed: " + str( now - created_py)
+	#print "Progress: " + str( progress*100) + " %"
+	dauertschon = ( now - created_py )
+	dauertschon_s=dauertschon.total_seconds()
+	dauertinsgesamt_s= dauertschon_s/progress 
+	dauertnoch_s=dauertinsgesamt_s  - dauertschon_s
+	dauertnoch_m=int(dauertnoch_s/60)
+	dauertnoch=datetime.timedelta(seconds=dauertnoch_s)	
+	#print "Dauert schon : " + str(dauertschon_s) + " Sekunden"
+	#print "Dauert insgesamt: " + str(dauertinsgesamt_s) + " Sekunden"
+	#print "Dauert noch: " + str(dauertnoch_s) + " Sekunden"
+	#print "Dauert noch: " + str(dauertnoch) 
+	ende = now + dauertnoch + diff
+	#print ende
+	output="Task: " + task + " - Progress: " + str(progress*100) + "% ; ends in :   " + str(dauertnoch).split(".")[0] +" (hh:mm:ss) Endtime: " + str(ende).split(".")[0]
+
+
+print str(status_num) + " XenServer_Migration_Task Progress=" + str(progress*100).split(".")[0] +";;;;100  xe list-task - " + output
+sys.exit(status_num)
