@@ -6,7 +6,7 @@ Linux und Win
 
 ## Nur mit Symlinks arbeiten !
 
-Diese Checks liegen im Verzeichnis /repo unter 
+Diese Checks liegen im Verzeichnis /repo oder /check_mk_my_stuff unter 
 
 dem root Verzeichnis
 
