@@ -8,8 +8,8 @@ Where-Object DisplayName -like "*virtio-win-guest-tools*"
 
 if ($tool){
 # show these registry values per item:
-$tool_name =$sw.DisplayName
-$tool_version =$sw.DisplayVersion
+$tool_name =$tool.DisplayName
+$tool_version =$tool.DisplayVersion
 
 # | Select-Object -Property DisplayName, DisplayVersion #, UninstallString, InstallDate
 }
