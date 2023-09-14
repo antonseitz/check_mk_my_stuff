@@ -1,5 +1,9 @@
 $users= quser
 
+$lang=(Get-Culture).Name
+if($lang -eq "de-DE") { $correct = 0}
+ else {$correct = 1}
+
 # der output von quser hat leider bei angemeldeten Usern 7 spalten, bei getrennten 6.
 # deswegen zählen wird z.T. von hinten im Array
 
@@ -15,11 +19,15 @@ for ( $i=1 ; $i -le ($users.length -1) ; $i++ ){
 	$line_worte =($line	-replace "\s+"," ").Split()
 	$outputshort += $line_worte[0] +" " # username
 	$outputshort += $line_worte[1] +" " # sessionname BEI GETRENNTEN USERN ist das leer !
-	$outputshort += $line_worte[-5] +" " # ID
-	$outputshort += $line_worte[-4] +" " # STATUS
+	$outputshort += $line_worte[ (-5 - $correct) ] +" " # ID
+	$outputshort += $line_worte[ (-4 - $correct) ]  +" " # STATUS
 	
-	$outputshort += "Leerlauf seit: " + $line_worte[-3]   # LEERLAUF
-	if($line_worte[-3].contains(":")){
+
+
+
+
+	$outputshort += "Leerlauf seit: " + $line_worte[( -3 - $correct) ]   # LEERLAUF
+	if($line_worte[( -3 - $correct)].contains(":")){
 		$outputshort += " h"
 	}else {
 		$outputshort += " min"
