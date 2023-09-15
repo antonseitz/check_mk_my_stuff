@@ -5,7 +5,7 @@ if($lang -eq "de-DE") { $correct = 0}
  else {$correct = 1}
 
 # der output von quser hat leider bei angemeldeten Usern 7 spalten, bei getrennten 6.
-# deswegen z‰hlen wird z.T. von hinten im Array
+# deswegen z√§hlen wird z.T. von hinten im Array
 
 $outputshort = $outputlong =""
 
@@ -43,4 +43,4 @@ for ( $i=1 ; $i -le ($users.length -1) ; $i++ ){
 }
 
 #-Replace '\s+',' '
-"0 Users_logged_in - OK - Version: " + $outputshort + " (Details in long output)\n" + $outputlong
+"0 Users_logged_in - OK - Logged_in: " + $outputshort + " (Details in long output)\n" + $outputlong
