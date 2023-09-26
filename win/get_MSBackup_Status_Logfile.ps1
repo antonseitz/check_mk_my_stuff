@@ -1,4 +1,4 @@
-$last_n_lines=300
+$last_n_lines=150
 
 $a=get-content -Path C:\ms_backup\logs\ms_backup.full.log -tail $last_n_lines | Select-String  -Pattern "error|exception" 
 $b=get-content -Path C:\ms_backup\logs\ms_backup.diff.log -tail $last_n_lines | Select-String  -Pattern "error|exception" 
